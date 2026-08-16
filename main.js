@@ -159,22 +159,22 @@ const games = [
     },
     {
         name: "Sonic & Knuckles",
-        path: "sonic_knuckles",
+        path: "sonic_knuckles.bin",
         core: "segaMD"
     },
     {
         name: "Sonic the Hedgehog",
-        path: "sonic_the_hedgehog",
+        path: "sonic_the_hedgehog.bin",
         core: "segaMD"
     },
     {
         name: "Sonic the Hedgehog 2",
-        path: "sonic_the_hedgehog_2",
+        path: "sonic_the_hedgehog_2.bin",
         core: "segaMD"
     },
     {
         name: "Sonic the Hedgehog 3",
-        path: "sonic_the_hedgehog_3",
+        path: "sonic_the_hedgehog_3.bin",
         core: "segaMD"
     },
     {
