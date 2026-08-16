@@ -1,0 +1,2 @@
+- add featured game based on date
+- add fullscreen option
