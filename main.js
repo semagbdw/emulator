@@ -1,16 +1,25 @@
+const navbar = document.getElementById("navbar");
 const searchInput = document.getElementById("search-input");
 const searchList = document.getElementById("search-list");
 const gameContainer = document.getElementById("game-container");
 
-let games;
+const paramsString = window.location.search;
+const searchParams = new URLSearchParams(paramsString);
+const fullscreen = searchParams.get("fullscreen");
+if (fullscreen) { navbar.remove(); }
+
+let games = null;
+let currentId = null;
 
 function loadGame(id) {
     const local = true;
 
     const game = games.find(game => game.id == id);
     if (!game) {
-        return
+        return;
     }
+
+    currentId = game.id;
 
     const cdn = window.cdn || (local ? "data/" : "https://cdn.emulatorjs.org/stable/data/");
     const core = `${game.core}`;
@@ -54,8 +63,26 @@ function deactivateSearch() {
     searchInput.style.borderRadius = "2px";
 }
 
+function openInNew() {
+    if (!currentId) {
+        console.log("No game selected");
+        return;
+    }
+
+    const baseUrl = window.location.origin + window.location.pathname;
+    const url =
+        window.location.origin +
+        window.location.pathname +
+        "?id=" +
+        currentId +
+        "&fullscreen=true";
+
+    console.log(`Opening in new: ${url}`);
+    window.open(url, "_blank");
+}
+
 function initFeatured() {
-    const featuredGames = [
+    const featuredIds = [
         "galaga",
         "super_mario_bros",
         "pacman",
@@ -67,20 +94,22 @@ function initFeatured() {
 
     const method = "date";
 
-    let day = 0;
+    let featuredId;
     switch (method) {
         case "date":
             const date = new Date();
-            day = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000) % featuredGames.length;
+            const day = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000) % featuredIds.length;
+            featuredId = featuredIds[day];
             break;
         case "random":
-            day = Math.floor(Math.random() * featuredGames.length);
+            const random = Math.floor(Math.random() * featuredIds.length);
+            featuredId = featuredIds[random];
             break;
     }
 
-    const game = games.find(game => game.id == featuredGames[day]);
+    const game = games.find(game => game.id == featuredId);
     if (!game) {
-        throw new Error(`couldn't find featured game with id ${featuredGames[day]}`);
+        throw new Error(`couldn't find featured game with id ${featuredId}`);
     }
 
     const div = document.createElement("div");
@@ -110,12 +139,12 @@ async function init() {
     const response = await fetch("games.json");
     games = await response.json();
 
-    initFeatured();
-
-    const paramsString = window.location.search;
-    const searchParams = new URLSearchParams(paramsString);
-
     const id = searchParams.get("id");
+
+    if (!fullscreen) {
+        initFeatured();
+    }
+
     loadGame(id);
 }
 
@@ -123,6 +152,7 @@ searchInput.addEventListener("focus", (event) => {
     searchList.innerHTML = games
         .map((item) => `<div id="${item.id}" class="search-list-item">${item.name}</div>`)
         .join("");
+
     activateSearch();
 });
 
@@ -142,6 +172,7 @@ searchInput.addEventListener("input", (event) => {
         searchList.innerHTML = matches
             .map((item) => `<div id="${item.id}" class="search-list-item">${item.name}</div>`)
             .join("");
+
         activateSearch();
     } else {
        deactivateSearch();
