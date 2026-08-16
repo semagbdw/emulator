@@ -255,8 +255,10 @@ const games = [
 ];
 
 function loadGame(index) {
+    const local = true;
+
     const game = games[index];
-    const cdn = window.cdn || "data/";
+    const cdn = window.cdn || (local ? "data/" : "https://cdn.emulatorjs.org/stable/data/");
     const core = `${game.core}`;
 
     window.EJS_player = "#game";

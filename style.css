@@ -23,13 +23,18 @@ body {
 
 #search-container {
     box-sizing: border-box;
+    width: 100%;
+    max-width: 256px;
+    min-width: 0;
 }
 
 #search-input {
     border: none;
     outline: none;
     border-radius: 2px;
-    width: 256px;
+    width: 100%;
+    max-width: 256px;
+    min-width: 0;
     height: 100%;
     font-family: inherit;
     font-size: inherit;
@@ -39,11 +44,12 @@ body {
 #search-list {
     position: relative;
     height: 200px;
-    width: 256px;
+    width: 100%;
+    min-width: 0;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 2;
-    scrollbar-color: #202020#dadada;
+    scrollbar-color: #202020 #dadada;
 }
 
 .search-list-item {
@@ -67,16 +73,10 @@ body {
     background: #383838;
     flex: 1;
     z-index: 1;
-}
-
-:root {
-    --navbar-background: #202020          ;
-    --navbar-button-background: #3f3f3f;
-    --navbar-button-color: #dadada;
-    --navbar-button-font: "Roboto";
-    --navbar-button-font-size: 16px;
-    --editor-background: #383838;
-    --editor-color: #dadada;
-    --editor-font: "Jet Brains Mono";
-    --editor-font-size: 12px;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
