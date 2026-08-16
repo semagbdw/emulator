@@ -70,7 +70,7 @@ body {
 
 #game-container {
     position: relative;
-    background: #383838;
+    background: #333333;
     flex: 1;
     z-index: 1;
     min-width: 0;
@@ -79,4 +79,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#featured-game {
+    background: #202020;
+    padding: 4px;
+    border-radius: 4px;
+    color: #dadada;
+    font-size: 16px;
+    width: 250px;
+
+}
+
+#featured-game p {
+    margin: 2px;
+}
+
+#featured-game a {
+    color: #fafafa;
+}
+
+#featured-game img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
 }
