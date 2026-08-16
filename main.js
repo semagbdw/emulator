@@ -65,16 +65,16 @@ function initFeatured() {
         "tetris_nes"
     ];
 
-    const method = "random";
+    const method = "date";
 
     let day = 0;
     switch (method) {
         case "date":
             const date = new Date();
-            day = date.getDay();
+            day = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000) % featuredGames.length;
             break;
         case "random":
-            day = Math.floor(Math.random() * 7);
+            day = Math.floor(Math.random() * featuredGames.length);
             break;
     }
 
