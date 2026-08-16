@@ -1,0 +1,82 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: black;
+    font-family: Arial;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+#navbar {
+    height: 24px;
+    background: #202020;
+    display: flex;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+#search-container {
+    box-sizing: border-box;
+}
+
+#search-input {
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    width: 256px;
+    height: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    background: #dadada;
+}
+
+#search-list {
+    position: relative;
+    height: 200px;
+    width: 256px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 2;
+    scrollbar-color: #202020#dadada;
+}
+
+.search-list-item {
+    background: #dadada;
+    align-items: center;
+    padding: 1px 2px;
+    user-select: none;
+    word-wrap: break-word;
+}
+
+.search-list-item:hover {
+    background: #fafafa;
+}
+
+.search-list-item:last-child {
+    border-radius: 0 0 2px 2px;
+}
+
+#game-container {
+    position: relative;
+    background: #383838;
+    flex: 1;
+    z-index: 1;
+}
+
+:root {
+    --navbar-background: #202020          ;
+    --navbar-button-background: #3f3f3f;
+    --navbar-button-color: #dadada;
+    --navbar-button-font: "Roboto";
+    --navbar-button-font-size: 16px;
+    --editor-background: #383838;
+    --editor-color: #dadada;
+    --editor-font: "Jet Brains Mono";
+    --editor-font-size: 12px;
+}
