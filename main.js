@@ -3,12 +3,12 @@
 const navbar = document.getElementById("navbar");
 const searchInput = document.getElementById("search-input");
 const searchList = document.getElementById("search-list");
-const fullscreenImg = document.getElementById("fullscreen-img");
+const navbarToggleImg = document.getElementById("navbar-toggle-img");
 const gameContainer = document.getElementById("game-container");
 
 let games = null;
 let currentId = null;
-let fullscreen = false;
+let navbarEnabled = true;
 
 /*
     CURRENT CORES:
@@ -74,15 +74,15 @@ function deactivateSearch() {
     searchInput.style.borderRadius = "2px";
 }
 
-function toggleFullscreen() {
-    if (fullscreen) {
-        fullscreen = false;
-        fullscreenImg.src = "assets/open_fullscreen.png";
-        navbar.style.display = "flex";
-    } else {
-        fullscreen = true;
-        fullscreenImg.src = "assets/close_fullscreen.png";
+function toggleNavbar() {
+    if (navbarEnabled) {
+        navbarEnabled = false;
+        navbarToggleImg.src = "assets/down.png";
         navbar.style.display = "none";
+    } else {
+        navbarEnabled = true;
+        navbarToggleImg.src = "assets/up.png";
+        navbar.style.display = "flex";
     }
 }
 
