@@ -54,7 +54,6 @@ body {
     outline: none;
     border-radius: 2px;
     width: 100%;
-    max-width: 256px;
     min-width: 0;
     height: 100%;
     font-family: inherit;
