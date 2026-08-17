@@ -1,15 +1,14 @@
+"use strict";
+
 const navbar = document.getElementById("navbar");
 const searchInput = document.getElementById("search-input");
 const searchList = document.getElementById("search-list");
+const fullscreenImg = document.getElementById("fullscreen-img");
 const gameContainer = document.getElementById("game-container");
-
-const paramsString = window.location.search;
-const searchParams = new URLSearchParams(paramsString);
-const fullscreen = searchParams.get("fullscreen");
-if (fullscreen) { navbar.remove(); }
 
 let games = null;
 let currentId = null;
+let fullscreen = false;
 
 function loadGame(id) {
     const local = true;
@@ -63,22 +62,16 @@ function deactivateSearch() {
     searchInput.style.borderRadius = "2px";
 }
 
-function openInNew() {
-    if (!currentId) {
-        console.log("No game selected");
-        return;
+function toggleFullscreen() {
+    if (fullscreen) {
+        fullscreen = false;
+        fullscreenImg.src = "assets/open_fullscreen.png";
+        navbar.style.display = "flex";
+    } else {
+        fullscreen = true;
+        fullscreenImg.src = "assets/close_fullscreen.png";
+        navbar.style.display = "none";
     }
-
-    const baseUrl = window.location.origin + window.location.pathname;
-    const url =
-        window.location.origin +
-        window.location.pathname +
-        "?id=" +
-        currentId +
-        "&fullscreen=true";
-
-    console.log(`Opening in new: ${url}`);
-    window.open(url, "_blank");
 }
 
 function initFeatured() {
@@ -117,12 +110,9 @@ function initFeatured() {
     const p = document.createElement("p");
     const a = document.createElement("a");
 
-    img.src = `assets/${game.id}.png`;
-
+    img.src = `assets/thumbnails/${game.id}.png`;
     div.id = "featured-game";
-
     p.textContent = "Featured Game: ";
-
     a.textContent = `${game.name}`;
     a.href = "#";
     a.onclick = (event) => {
@@ -139,12 +129,11 @@ async function init() {
     const response = await fetch("games.json");
     games = await response.json();
 
+    const paramsString = window.location.search;
+    const searchParams = new URLSearchParams(paramsString);
     const id = searchParams.get("id");
 
-    if (!fullscreen) {
-        initFeatured();
-    }
-
+    initFeatured();
     loadGame(id);
 }
 
