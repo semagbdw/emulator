@@ -6,10 +6,22 @@
         "core": "atari2600"
     },
     {
+        "id": "asteroids",
+        "name": "Asteroids",
+        "path": "asteroid.zip",
+        "core": "arcade"
+    },
+    {
         "id": "banjo_kazooie",
         "name": "Banjo-Kazooie",
         "path": "banjo_kazooie.n64",
         "core": "n64"
+    },
+    {
+        "id": "battletoads",
+        "name": "Battletoads",
+        "path": "battletoads.nes",
+        "core": "nes"
     },
     {
         "id": "bomberman",
@@ -106,6 +118,12 @@
         "name": "Mike Tyson's Punch Out!!",
         "path": "mike_tyson_s_punch_out.nes",
         "core": "nes"
+    },
+    {
+        "id": "ms_pac_man",
+        "name": "Ms. Pac-Man",
+        "path": "mspacman.zip",
+        "core": "arcade"
     },
     {
         "id": "pac_man",
