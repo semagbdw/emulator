@@ -10,6 +10,18 @@ let games = null;
 let currentId = null;
 let fullscreen = false;
 
+/*
+    CURRENT CORES:
+    - atari2600
+    - nes
+    - n64
+    - arcade
+    - snes
+    - gb
+    - gba
+    - megaMD
+*/
+
 function loadGame(id) {
     const local = true;
 
@@ -26,7 +38,7 @@ function loadGame(id) {
     window.EJS_player = "#game";
     window.EJS_gameName = game.name;
     window.EJS_biosUrl = "";
-    window.EJS_gameUrl = `roms/${game.id}${game.ext}`;
+    window.EJS_gameUrl = `roms/${game.path}`;
     window.EJS_core = core;
     window.EJS_pathtodata = cdn;
     window.EJS_startOnLoaded = true;
@@ -78,7 +90,7 @@ function initFeatured() {
     const featuredIds = [
         "galaga",
         "super_mario_bros",
-        "pacman",
+        "pac_man",
         "super_mario_64",
         "pokemon_red_version",
         "sonic_the_hedgehog",

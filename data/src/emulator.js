@@ -178,6 +178,7 @@ class EmulatorJS {
             console.warn("Using EmulatorJS beta. Not checking for updates. This instance may be out of date. Using stable is highly recommended unless you build and ship your own cores.");
             return;
         }
+		/*
         fetch("https://cdn.emulatorjs.org/stable/data/version.json").then(response => {
             if (response.ok) {
                 response.text().then(body => {
@@ -188,6 +189,7 @@ class EmulatorJS {
                 })
             }
         })
+		*/
     }
     versionAsInt(ver) {
         if (ver.endsWith("-beta")) {
